@@ -1,7 +1,0 @@
-id: polished_diorite_structure
-type: ORE
-material: minecraft:polished_diorite
-size: 33
-replace:
-  - minecraft:stone
-
