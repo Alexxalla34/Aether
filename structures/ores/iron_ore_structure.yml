@@ -1,0 +1,7 @@
+id: iron_ore_structure
+type: ORE
+material: minecraft:iron_ore
+size: 9
+replace:
+  - minecraft:stone
+

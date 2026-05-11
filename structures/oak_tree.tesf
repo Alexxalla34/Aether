@@ -1,0 +1,17 @@
+num height = 4 + randomInt(4);
+for (num y = 0; y < height; y = y + 1) {
+    block(0, y, 0, "minecraft:oak_log", true);
+}
+for (num y = height - 2; y <= height + 1; y = y + 1) {
+    num radius = 2;
+    if (y >= height) radius = 1;
+    for (num x = -radius; x <= radius; x = x + 1) {
+        for (num z = -radius; z <= radius; z = z + 1) {
+            if (!(abs(x) == radius && abs(z) == radius && randomInt(2) == 0)) {
+                if (!(x == 0 && z == 0 && y < height)) {
+                    block(x, y, z, "minecraft:oak_leaves", false);
+                }
+            }
+        }
+    }
+}

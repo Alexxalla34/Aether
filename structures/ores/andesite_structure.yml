@@ -1,0 +1,6 @@
+id: andesite_structure
+type: ORE
+material: minecraft:andesite
+size: 16
+replace:
+  - minecraft:stone

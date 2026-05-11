@@ -1,0 +1,24 @@
+num baseRadius = 14 + randomInt(10); 
+
+for(num blob = 0; blob < 10; blob = blob + 1) {
+    num offsetX = randomInt(baseRadius*2) - baseRadius;
+    num offsetZ = (randomInt(baseRadius*4) - baseRadius*2); // Extreme Z stretch
+    num offsetY = randomInt(4) - 2;
+    
+    num rX = baseRadius * (0.7 + randomInt(30)/100);
+    num rZ = baseRadius * (1.5 + randomInt(100)/100); // 1.5x to 2.5x stretch
+    num rY = 1.5 + randomInt(2);
+    
+    for (num x = -30; x <= 30; x = x + 1) {
+        for (num y = -5; y <= 5; y = y + 1) {
+            for (num z = -60; z <= 60; z = z + 1) {
+                if (x >= -rX && x <= rX && y >= -rY && y <= rY && z >= -rZ && z <= rZ) {
+                    num dist = (x*x) / (rX*rX) + (y*y) / (rY*rY) + (z*z) / (rZ*rZ);
+                    if (dist <= 1) {
+                        block(offsetX+x, offsetY+y, offsetZ+z, "minecraft:powder_snow", false);
+                    }
+                }
+            }
+        }
+    }
+}

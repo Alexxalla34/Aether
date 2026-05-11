@@ -2,7 +2,7 @@
 
 # World Y levels
 top-y: 319
-ocean-level: 62
+ocean-level: 0
 deepslate-top: 7     # Y level where deepslate begins to replace stone
 deepslate-bottom: -7 # Y level where all stone is replaced by deepslate
 bedrock-top: -60     # Y level where deepslate starts to be replaced by bedrock

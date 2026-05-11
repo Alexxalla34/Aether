@@ -1,0 +1,13 @@
+functions:
+  lerp:
+    arguments:
+      - t
+      - at # Value of t where output = a
+      - a
+      - bt # Value of t where output = b
+      - b
+    expression: |
+      if(at<bt,
+        if(t<=at,a,if(t>=bt,b,a*(t-bt)/(at-bt)+b*(t-at)/(bt-at))),
+        if(t>=at,a,if(t<=bt,b,a*(t-bt)/(at-bt)+b*(t-at)/(bt-at)))
+      )

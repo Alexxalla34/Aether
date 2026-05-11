@@ -1,0 +1,31 @@
+id: AQUA_PLAINS
+type: BIOME
+extends: AQUA_TERRAIN
+
+tags:
+  - aether
+  - aqua
+
+color: 65535 # Aqua Hex 00FFFF -> 65535 in dec
+vanilla: minecraft:the_void
+
+palette:
+  - island_surface: $meta.yml:top-y
+
+features:
+  carving:
+    - caves
+  ores:
+    - andesite
+    - gold_ore
+    - iron_ore
+    - diorite
+    - polished_diorite
+  ponds:
+    - ponds
+  flora:
+    - dandelions
+  trees:
+    - oak_tree
+  clouds:
+    - clouds

@@ -1,21 +1,20 @@
 samplers:
-  simplex:
+  simplex_2d:
     dimensions: 2
-    type: FBM
-    octaves: 4
-    sampler:
-      type: OPEN_SIMPLEX_2
-      frequency: 0.0075
-  simplex3:
+    type: OPEN_SIMPLEX_2
+    frequency: 0.01
+
+  simplex_3d:
     dimensions: 3
-    type: FBM
-    octaves: 4
-    sampler:
-      type: OPEN_SIMPLEX_2
-      frequency: 0.0075
-  positiveWhiteNoise:
+    type: OPEN_SIMPLEX_2
+    frequency: 0.01
+
+  biome_noise:
     dimensions: 2
-    type: POSITIVE_WHITE_NOISE
-  whiteNoise:
-    dimensions: 2
-    type: WHITE_NOISE
+    type: OPEN_SIMPLEX_2
+    frequency: 0.005
+
+  cloud_noise:
+    dimensions: 3
+    type: OPEN_SIMPLEX_2
+    frequency: 0.005

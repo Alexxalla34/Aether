@@ -1,0 +1,31 @@
+id: YELLOW_PLAINS
+type: BIOME
+extends: YELLOW_TERRAIN
+
+tags:
+  - aether
+  - yellow
+
+color: 16776960 # Yellow Hex FFFF00 -> 16776960 in dec
+vanilla: minecraft:the_void
+
+palette:
+  - island_surface: $meta.yml:top-y
+
+features:
+  carving:
+    - caves
+  ores:
+    - andesite
+    - gold_ore
+    - iron_ore
+    - diorite
+    - polished_diorite
+  ponds:
+    - ponds
+  flora:
+    - dandelions
+  trees:
+    - oak_tree
+  clouds:
+    - clouds

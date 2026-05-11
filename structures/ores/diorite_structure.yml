@@ -1,0 +1,7 @@
+id: diorite_structure
+type: ORE
+material: minecraft:diorite
+size: 33
+replace:
+  - minecraft:stone
+
