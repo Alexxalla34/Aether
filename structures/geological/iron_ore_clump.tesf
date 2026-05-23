@@ -1,0 +1,16 @@
+// Large Iron Ore Clump
+num radius = 2.2;
+num radiusSq = pow2(radius);
+
+for (num x = -3; x <= 3; x = x + 1) {
+    for (num y = -3; y <= 3; y = y + 1) {
+        for (num z = -3; z <= 3; z = z + 1) {
+            num noise = sampler("simplex3", (originX() + x) * 0.2, (originY() + y) * 0.2, (originZ() + z) * 0.2) * 2.0;
+            if (pow2(x) + pow2(y) + pow2(z) < radiusSq + noise) {
+                if (getBlock(x, y, z) == "minecraft:stone") {
+                    block(x, y, z, "minecraft:iron_ore");
+                }
+            }
+        }
+    }
+}

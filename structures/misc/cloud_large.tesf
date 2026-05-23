@@ -1,0 +1,31 @@
+// Large Cloud Structure
+if (getBlock(0, 0, 0) != "minecraft:air") fail;
+
+num r = 16;
+num rSq = pow2(r);
+
+// Randomly squash/stretch each axis for non-spherical shapes
+num scaleX = 0.8 + (randomInt(1000)/1000) * 1.5;
+num scaleZ = 0.8 + (randomInt(1000)/1000) * 1.5;
+num scaleY = 1.3 + (randomInt(1000)/1000) * 1.0; // Usually squashed Y, sometimes taller
+
+for (num x = -r * 2; x <= r * 2; x = x + 1) {
+    for (num y = -r; y <= r; y = y + 1) {
+        for (num z = -r * 2; z <= r * 2; z = z + 1) {
+            num dx = x / scaleX;
+            num dy = y * scaleY;
+            num dz = z / scaleZ;
+            
+            num distSq = pow2(dx) + pow2(dy) + pow2(dz);
+            if (distSq < rSq) {
+                // Large clouds: low frequency, high amplitude noise to make them fluffy and blobby
+                num n = sampler("simplex3", (originX() + x) * 0.04, (originY() + y) * 0.08, (originZ() + z) * 0.04) * r * 1.2;
+                if (distSq < rSq + n) {
+                    if (getBlock(x, y, z) == "minecraft:air") {
+                        block(x, y, z, "minecraft:powder_snow");
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+id: IRON_ORE
+type: FEATURE
+
+distributor:
+  type: SAMPLER
+  sampler:
+    type: POSITIVE_WHITE_NOISE
+    salt: 101
+  threshold: 0.06
+
+locator:
+  type: RANDOM
+  amount: 5
+  height:
+    min: 1
+    max: $meta.yml:top-y
+
+structures:
+  distribution:
+    type: CONSTANT
+  structures: iron_ore_clump

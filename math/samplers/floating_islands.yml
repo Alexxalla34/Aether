@@ -1,0 +1,13 @@
+# Aether global noise samplers
+# Terrain noise is now handled inline in biomes/abstract/terrain/eq_*.yml
+
+samplers:
+  # 2D biome distribution noise (used by biome-distribution/presets/aether.yml)
+  biomeDistribution:
+    dimensions: 2
+    type: FBM
+    octaves: 3
+    sampler:
+      type: OPEN_SIMPLEX_2
+      frequency: 0.03
+      salt: 3001

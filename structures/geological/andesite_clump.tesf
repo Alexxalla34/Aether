@@ -1,0 +1,16 @@
+// Large Andesite Clump (Larger than ores)
+num radius = 3.2;
+num radiusSq = pow2(radius);
+
+for (num x = -4; x <= 4; x = x + 1) {
+    for (num y = -4; y <= 4; y = y + 1) {
+        for (num z = -4; z <= 4; z = z + 1) {
+            num noise = sampler("simplex3", (originX() + x) * 0.15, (originY() + y) * 0.15, (originZ() + z) * 0.15) * 2.5;
+            if (pow2(x) + pow2(y) + pow2(z) < radiusSq + noise) {
+                if (getBlock(x, y, z) == "minecraft:stone") {
+                    block(x, y, z, "minecraft:andesite");
+                }
+            }
+        }
+    }
+}

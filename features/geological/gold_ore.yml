@@ -1,0 +1,21 @@
+id: GOLD_ORE
+type: FEATURE
+
+distributor:
+  type: SAMPLER
+  sampler:
+    type: POSITIVE_WHITE_NOISE
+    salt: 103
+  threshold: 0.05
+
+locator:
+  type: RANDOM
+  amount: 4
+  height:
+    min: 1
+    max: $meta.yml:top-y
+
+structures:
+  distribution:
+    type: CONSTANT
+  structures: gold_ore_clump

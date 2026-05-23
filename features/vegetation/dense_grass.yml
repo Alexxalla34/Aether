@@ -1,0 +1,30 @@
+id: DENSE_GRASS
+type: FEATURE
+
+distributor:
+  type: SAMPLER
+  sampler:
+    type: POSITIVE_WHITE_NOISE
+    salt: 300
+  threshold: 0.8 # Very dense
+
+locator:
+  type: AND
+  locators:
+    - type: SURFACE
+      range: &range
+        min: 1
+        max: $meta.yml:top-y
+    - type: PATTERN
+      range: *range
+      pattern:
+        type: MATCH_SET
+        blocks: $features/vegetation/meta.yml:plantable-blocks
+        offset: -1
+
+structures:
+  distribution:
+    type: WHITE_NOISE
+  structures:
+    - BLOCK:minecraft:short_grass: 3
+    - tall_grass: 2

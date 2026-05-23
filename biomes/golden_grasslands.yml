@@ -1,0 +1,37 @@
+id: GOLDEN_GRASSLANDS
+type: BIOME
+extends:
+  - BASE
+  - EQ_FLAT_ISLAND
+
+vanilla: minecraft:the_void
+
+tags:
+  - LAND
+
+colors:
+  grass: 0xe5ff00
+  foliage: 0xFFEE59
+  water: 0x44aff5
+  water-fog: 0x44aff5
+  fog: 0xc8deff
+  sky: 0x88bbff
+
+climate:
+  precipitation: true
+  temperature: 0.8
+  downfall: 0.3
+
+palette:
+  - GOLDEN_GRASS: $meta.yml:top-y
+
+features:
+  caves:
+    - RAVINE_CARVERS
+  ores:
+    - GOLD_ORE
+    - RAW_GOLD_DEPOSITS
+    - ANDESITE_DEPOSITS
+  flora:
+    - DENSE_GRASS
+    - LARGE_FERNS

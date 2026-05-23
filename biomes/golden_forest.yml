@@ -1,0 +1,41 @@
+id: GOLDEN_FOREST
+type: BIOME
+extends:
+  - BASE
+  - EQ_FLAT_ISLAND
+
+vanilla: minecraft:the_void
+
+tags:
+  - LAND
+
+colors:
+  grass: 0xd6fc17
+  foliage: 0xffc400
+  water: 0x44aff5
+  water-fog: 0x44aff5
+  fog: 0xc8deff
+  sky: 0x88bbff
+
+climate:
+  precipitation: true
+  temperature: 0.8
+  downfall: 0.3
+
+palette:
+  - GOLDEN_FOREST_GROUND: $meta.yml:top-y
+
+features:
+  caves:
+    - RAVINE_CARVERS
+  ores:
+    - GOLD_ORE
+    - RAW_GOLD_DEPOSITS
+    - ANDESITE_DEPOSITS
+  flora:
+    - GRASS
+    - FERNS
+    - DANDELIONS
+    - WILDFLOWERS
+  trees:
+    - LARGE_OAK_TREES

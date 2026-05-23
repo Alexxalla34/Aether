@@ -1,0 +1,5 @@
+# Terrain shape samplers — DEPRECATED
+# All terrain noise is now handled inline in biomes/abstract/terrain/eq_*.yml
+# This file kept for compatibility but is no longer referenced.
+
+samplers: {}

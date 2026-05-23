@@ -1,0 +1,21 @@
+id: RAW_GOLD_DEPOSITS
+type: FEATURE
+
+distributor:
+  type: SAMPLER
+  sampler:
+    type: POSITIVE_WHITE_NOISE
+    salt: 104
+  threshold: 0.01 # Rare
+
+locator:
+  type: RANDOM
+  amount: 2
+  height:
+    min: 1
+    max: $meta.yml:top-y
+
+structures:
+  distribution:
+    type: CONSTANT
+  structures: raw_gold_clump

@@ -1,0 +1,9 @@
+plantable-blocks:
+  - minecraft:grass_block
+  - minecraft:dirt
+  - minecraft:coarse_dirt
+
+dry-plantable-blocks:
+  - minecraft:grass_block
+  - minecraft:dirt
+  - minecraft:coarse_dirt

@@ -1,0 +1,49 @@
+# Aether pack customization
+
+global-scale: 1.0
+# Overall horizontal scale of generation. Higher = bigger islands.
+
+# ---
+# Floating Islands
+# ---
+
+island-frequency: 0.002
+# Controls horizontal spread of islands. Lower = bigger islands, further apart.
+# Default: 0.002
+
+island-threshold: 0.40
+# Density threshold for island formation. With PROBABILITY noise [0,1],
+# the expression is -1+threshold+noise. Noise must exceed (1-threshold) to
+# produce solid terrain. Higher = more/bigger islands.
+# Default: 0.35
+
+island-amplitude: 1.1
+# Strength of island noise. Higher = more variation in island shapes.
+# Default: 1.0
+
+# ---
+# Terrain
+# ---
+
+terrain-base-y-level: 100
+# Center Y level for island generation.
+# Default: 100
+
+terrain-height: 80
+# Taper range — how far from Y edges islands fade to nothing.
+# Default: 80
+
+# ---
+# Caves
+# ---
+
+cave-frequency: 0.020
+# Frequency of cave noise inside islands. Higher = more caves.
+# Default: 0.015
+
+cave-threshold: 0.65
+# Threshold for cave carving. Higher = less carving.
+# Default: 0.55
+
+cave-carve-strength: 0.2
+# Strength of internal cave carving.

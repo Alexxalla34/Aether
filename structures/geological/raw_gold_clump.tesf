@@ -1,0 +1,16 @@
+// Small Raw Gold Clump
+num radius = 1.2;
+num radiusSq = pow2(radius);
+
+for (num x = -2; x <= 2; x = x + 1) {
+    for (num y = -2; y <= 2; y = y + 1) {
+        for (num z = -2; z <= 2; z = z + 1) {
+            num noise = sampler("simplex3", (originX() + x) * 0.5, (originY() + y) * 0.5, (originZ() + z) * 0.5) * 1.0;
+            if (pow2(x) + pow2(y) + pow2(z) < radiusSq + noise) {
+                if (getBlock(x, y, z) == "minecraft:stone") {
+                    block(x, y, z, "minecraft:raw_gold_block");
+                }
+            }
+        }
+    }
+}

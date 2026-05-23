@@ -1,0 +1,2 @@
+// Generates a simple iron ore deposit
+block(0, 0, 0, "minecraft:iron_ore");
