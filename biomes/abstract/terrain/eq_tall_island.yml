@@ -1,0 +1,85 @@
+id: EQ_TALL_ISLAND
+type: BIOME
+abstract: true
+
+# Tall, vertically diverse floating islands (used by Aqua Grasslands)
+# Based on EndDimension REIMAGEND eq_default.yml pattern
+
+terrain:
+  sampler:
+    type: EXPRESSION
+    expression: |
+      -1.2 + threshold +
+      -if(y > 65 + layerPhase(x, 0, z) * 90, y - (65 + layerPhase(x, 0, z) * 90), ((65 + layerPhase(x, 0, z) * 90) - y) * bottomRatio) / layerSpacing * layerStrength +
+      lerp(y, maxH, 0, maxH - taper,
+        max(
+          lerp(y, minH - ucTranslate, 0, minH - ucTranslate + taper,
+            islandNoise(x, y * flatness, z) * 1.4
+          ),
+          lerp(y, minH, 0, minH + taper,
+            islandNoise(x, (y - ucTranslate) * flatness, z) * ucMask(x, y / 2, z) * 1.7
+          )
+        )
+      ) - if(caveNoise(x, y, z) > caveThreshold, caveStrength, 0)
+    variables:
+      threshold: $customization.yml:island-threshold
+      layerSpacing: 60      # Reduced from 80 for less towering
+      layerStrength: 0.30   # Increased from 0.2 to limit mountain height
+      bottomRatio: 0.40     # Added so bottom generation reaches much deeper
+      maxH: 230
+      minH: 10
+      taper: 40
+      flatness: 0.10        # Increased from 0.05 for flatter peaks
+      ucTranslate: -15
+      caveThreshold: $customization.yml:cave-threshold
+      caveStrength: $customization.yml:cave-carve-strength
+    samplers:
+
+      islandNoise:
+        dimensions: 3
+        type: PROBABILITY
+        sampler:
+          type: DOMAIN_WARP
+          amplitude: 40
+          warp:
+            type: OPEN_SIMPLEX_2
+            frequency: 0.005
+            salt: 9001
+          sampler:
+            type: FBM
+            octaves: 3
+            sampler:
+              type: OPEN_SIMPLEX_2
+              frequency: $customization.yml:island-frequency
+              salt: 1001
+      caveNoise:
+        dimensions: 3
+        type: PROBABILITY
+        sampler:
+          type: FBM
+          octaves: 2
+          sampler:
+            type: OPEN_SIMPLEX_2
+            frequency: $customization.yml:cave-frequency
+            salt: 3001
+      ucMask:
+        dimensions: 3
+        type: PROBABILITY
+        sampler:
+          type: RIDGED
+          octaves: 3
+          gain: 1
+          sampler:
+            type: OPEN_SIMPLEX_2
+            frequency: 0.006
+            salt: 1002
+      layerPhase:
+        dimensions: 3
+        type: PROBABILITY
+        sampler:
+          type: FBM
+          octaves: 2
+          sampler:
+            type: OPEN_SIMPLEX_2
+            frequency: 0.004
+            salt: 5003

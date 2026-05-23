@@ -1,0 +1,36 @@
+id: AQUA_GRASSLANDS
+type: BIOME
+extends:
+  - BASE
+  - EQ_MEDIUM_ISLAND
+
+vanilla: minecraft:the_void
+
+tags:
+  - LAND
+
+colors:
+  grass: 0x3FC1C9
+  foliage: 0x17b0fc
+  water: 0x3FC1C9
+  water-fog: 0x3FC1C9
+  fog: 0xd0e8ff
+  sky: 0x90c0ff
+
+climate:
+  precipitation: true
+  temperature: 0.4
+  downfall: 0.6
+
+palette:
+  - AQUA_GRASS: $meta.yml:top-y
+
+features:
+  ores:
+    - IRON_ORE
+    - RAW_IRON_DEPOSITS
+    - ANDESITE_DEPOSITS
+  flora:
+    - DENSE_GRASS
+    - LARGE_FERNS
+

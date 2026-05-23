@@ -1,0 +1,52 @@
+# Aether Biome Distribution
+# Uses a 2D pipeline to distribute biomes horizontally across the world.
+
+biomes:
+  type: PIPELINE
+  resolution: 4
+  pipeline:
+    source:
+      type: SAMPLER
+      sampler:
+        type: EXPRESSION
+        expression: biomeDistribution(x, z)
+        samplers:
+          biomeDistribution: $math/samplers/floating_islands.yml:samplers.biomeDistribution
+      biomes:
+        GOLDEN_GRASSLANDS: 8
+        AETHER_GRASSLANDS: 4
+        CLOUDS: 2
+        AQUA_GRASSLANDS: 10
+    stages:
+      - type: FRACTAL_EXPAND
+        sampler:
+          type: WHITE_NOISE
+      - type: FRACTAL_EXPAND
+        sampler:
+          type: WHITE_NOISE
+      - type: FRACTAL_EXPAND
+        sampler:
+          type: WHITE_NOISE
+
+      # Sub-biome splitting via mapping noise to a weighted list
+      - type: REPLACE_LIST
+        sampler:
+          type: OPEN_SIMPLEX_2
+          frequency: 0.02
+          salt: 1010
+        default-from: CLOUDS
+        default-to:
+          - CLOUDS: 2
+        to:
+          GOLDEN_GRASSLANDS:
+            - GOLDEN_GRASSLANDS: 5
+            - GOLDEN_MEADOW: 3
+            - GOLDEN_FOREST: 3
+          AETHER_GRASSLANDS:
+            - AETHER_GRASSLANDS: 4
+            - AETHER_MEADOW: 3
+            - AETHER_FOREST: 4
+          AQUA_GRASSLANDS:
+            - AQUA_GRASSLANDS: 3
+            - AQUA_SPRINGS: 4
+            - AQUA_FOREST: 4

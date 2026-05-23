@@ -1,0 +1,34 @@
+id: AETHER_MEADOW
+type: BIOME
+extends:
+  - BASE
+  - EQ_TALL_ISLAND
+
+vanilla: minecraft:the_void
+
+tags:
+  - LAND
+
+colors:
+  grass: 0x40fabc
+  foliage: 0xeaff5e
+  water: 0x3827cf
+  water-fog: 0x3827cf
+  fog: 0xd0e8ff
+  sky: 0x90c0ff
+
+climate:
+  precipitation: true
+  temperature: 0.4
+  downfall: 0.6
+
+palette:
+  - AETHER_GROUND: $meta.yml:top-y
+
+features:
+  ores:
+    - IRON_ORE
+    - RAW_IRON_DEPOSITS
+    - ANDESITE_DEPOSITS
+  flora:
+    - GRASS

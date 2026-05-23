@@ -1,0 +1,18 @@
+id: LARGE_CLOUDS
+type: FEATURE
+distributor:
+  type: SAMPLER
+  sampler:
+    type: POSITIVE_WHITE_NOISE
+    salt: 9001
+  threshold: 0.0001
+locator:
+  type: RANDOM
+  amount: 1
+  height:
+    min: 180
+    max: 300
+structures:
+  distribution:
+    type: CONSTANT
+  structures: cloud_large

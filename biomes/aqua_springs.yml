@@ -1,0 +1,39 @@
+id: AQUA_SPRINGS
+type: BIOME
+extends:
+  - BASE
+  - EQ_MEDIUM_ISLAND
+
+vanilla: minecraft:the_void
+
+tags:
+  - LAND
+
+colors:
+  grass: 0x329fa5
+  foliage: 0x17b0fc
+  water: 0x228C68
+  water-fog: 0x228C68
+  fog: 0xd0e8ff
+  sky: 0x90c0ff
+
+climate:
+  precipitation: true
+  temperature: 0.4
+  downfall: 0.6
+
+palette:
+  - AQUA_SPRINGS_GROUND: $meta.yml:top-y
+
+features:
+  ores:
+    - IRON_ORE
+    - RAW_IRON_DEPOSITS
+    - ANDESITE_DEPOSITS
+  flora:
+    - GRASS
+    - FERNS
+    - LARGE_FERNS
+    - BLUE_FLOWERS
+  trees:
+    - BIRCH_TREES

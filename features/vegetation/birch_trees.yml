@@ -1,0 +1,47 @@
+id: BIRCH_TREES
+type: FEATURE
+
+distributor:
+  type: AND
+  distributors:
+    - type: SAMPLER
+      sampler:
+        type: POSITIVE_WHITE_NOISE
+        salt: 14200
+      threshold: 0.04
+    - type: SAMPLER # Patching logic for clustered trees
+      sampler:
+        type: PROBABILITY
+        sampler:
+          type: OPEN_SIMPLEX_2
+          frequency: 0.02
+          salt: 14201
+      threshold: 0.55
+
+locator:
+  type: AND
+  locators:
+    - type: TOP
+      range: &range
+        min: 1
+        max: $meta.yml:top-y
+    - type: PATTERN
+      range: *range
+      pattern:
+        type: MATCH_SET
+        blocks: $features/vegetation/meta.yml:dry-plantable-blocks
+        offset: -1
+    - type: PATTERN
+      range: *range
+      pattern:
+        type: MATCH_SET
+        blocks:
+          - minecraft:air
+        offset: 0
+
+structures:
+  distribution:
+    type: WHITE_NOISE
+    salt: 14202
+  structures:
+    - birch_tree_procedural: 1

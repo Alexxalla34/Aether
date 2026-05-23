@@ -1,0 +1,2 @@
+// Generates a simple raw iron deposit
+block(0, 0, 0, "minecraft:raw_iron_block");

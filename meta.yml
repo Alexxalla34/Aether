@@ -1,0 +1,13 @@
+# Aether dimension global config
+
+# World Y levels
+top-y: 383
+bottom-y: 0
+
+# Island generation range
+island-min-y: 60
+island-max-y: 200
+
+# Cloud generation range
+cloud-min-y: 240
+cloud-max-y: 280

@@ -1,0 +1,39 @@
+id: AQUA_FOREST
+type: BIOME
+extends:
+  - BASE
+  - EQ_MEDIUM_ISLAND
+
+vanilla: minecraft:the_void
+
+tags:
+  - LAND
+
+colors:
+  grass: 0x36dce7
+  foliage: 0x17b0fc
+  water: 0x4FD19B
+  water-fog: 0x4FD19B
+  fog: 0xd0e8ff
+  sky: 0x90c0ff
+
+climate:
+  precipitation: true
+  temperature: 0.4
+  downfall: 0.6
+
+palette:
+  - AQUA_FOREST_GROUND: $meta.yml:top-y
+
+features:
+  ores:
+    - IRON_ORE
+    - RAW_IRON_DEPOSITS
+    - ANDESITE_DEPOSITS
+  flora:
+    - GRASS
+    - FERNS
+    - BLUE_FLOWERS
+    - AZALEA_BUSHES
+  trees:
+    - BIRCH_TREES

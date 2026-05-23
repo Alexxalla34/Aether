@@ -1,0 +1,41 @@
+id: FERNS
+type: FEATURE
+
+distributor:
+  type: AND
+  distributors:
+    - type: SAMPLER
+      sampler:
+        type: POSITIVE_WHITE_NOISE
+        salt: 14300
+      threshold: 0.6 # Dense coverage
+    - type: SAMPLER
+      sampler:
+        type: PROBABILITY
+        sampler:
+          type: OPEN_SIMPLEX_2
+          frequency: 0.04
+          salt: 14301
+      threshold: 0.4 # Clustering
+
+locator:
+  type: AND
+  locators:
+    - type: SURFACE
+      range: &range
+        min: 1
+        max: $meta.yml:top-y
+    - type: PATTERN
+      range: *range
+      pattern:
+        type: MATCH_SET
+        blocks: $features/vegetation/meta.yml:plantable-blocks
+        offset: -1
+
+structures:
+  distribution:
+    type: WHITE_NOISE
+    salt: 14302
+  structures:
+    - BLOCK:minecraft:fern: 3
+    - BLOCK:minecraft:large_fern: 1

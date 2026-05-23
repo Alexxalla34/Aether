@@ -1,0 +1,76 @@
+// Ravine carver - creates a long, narrow, deep vertical slash in terrain
+// Similar to cave_carver but tall/narrow instead of round
+
+num chunkX = originX() % 16;
+num chunkZ = originZ() % 16;
+if (chunkX < 0) chunkX = chunkX + 16;
+if (chunkZ < 0) chunkZ = chunkZ + 16;
+
+num offsetX = -chunkX + 7 + randomInt(2);
+num offsetZ = -chunkZ + 7 + randomInt(2);
+
+num randPrecision = 100;
+
+num width = 2 + randomInt(randPrecision) / randPrecision * 2;
+num depth = 12 + randomInt(8);
+num length = 14 + randomInt(10);
+
+num warp = 2;
+num warpFreq = 3;
+
+// Direction of the ravine
+num dx = (randomInt(randPrecision) / randPrecision - 0.5) * 1.5;
+num dz = (randomInt(randPrecision) / randPrecision - 0.5) * 1.5;
+num mag = sqrt(pow2(dx) + pow2(dz));
+dx = dx / mag;
+dz = dz / mag;
+
+num maxRange = 16;
+
+// Fail if carving into open air
+if (getBlock(offsetX, 0, offsetZ) == "minecraft:air") fail;
+
+num xTranslate = 0;
+num zTranslate = 0;
+
+for (num l = -length / 2; l < length / 2; l = l + 1) {
+
+    xTranslate = dx * l;
+    zTranslate = dz * l;
+
+    if (pow2(xTranslate) + pow2(zTranslate) > pow2(maxRange)) {
+        break;
+    }
+
+    // Ravine width tapers at ends
+    num taper = 1 - pow(2 * l / length, 2);
+    num localWidth = width * taper;
+    if (localWidth < 1) localWidth = 1;
+    num widthSquared = pow(localWidth, 2);
+
+    for (num x = -localWidth - warp; x < localWidth + warp; x = x + 1) {
+        for (num y = -depth; y < 1; y = y + 1) {
+            for (num z = -localWidth - warp; z < localWidth + warp; z = z + 1) {
+                num warpX = warp * sampler("simplex3",
+                    warpFreq * (x + originX()),
+                    warpFreq * (y + originY() + 1000),
+                    warpFreq * (z + originZ()));
+                num warpZ = warp * sampler("simplex3",
+                    warpFreq * (x + originX()),
+                    warpFreq * (y + originY() + 3000),
+                    warpFreq * (z + originZ()));
+
+                // Project onto perpendicular axis to ravine direction
+                num perpDist = pow(x + warpX, 2) + pow(z + warpZ, 2);
+
+                // Wider at top, narrower at bottom
+                num depthTaper = 1 - (y / -depth) * 0.6;
+                num adjustedWidth = widthSquared * depthTaper;
+
+                if (perpDist < adjustedWidth) {
+                    block(x + xTranslate + offsetX, y, z + zTranslate + offsetZ, "minecraft:air", true);
+                }
+            }
+        }
+    }
+}

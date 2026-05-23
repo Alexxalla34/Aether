@@ -1,0 +1,35 @@
+id: RAVINE_CARVERS
+type: FEATURE
+
+distributor:
+  type: PADDED_GRID
+  width: 50
+  padding: 60
+  salt: 7891
+
+locator:
+  type: AND
+  locators:
+    - type: TOP
+      range: &range
+        min: 1
+        max: $meta.yml:top-y
+    - type: PATTERN
+      range: *range
+      pattern:
+        type: OR
+        patterns:
+          - type: MATCH
+            block: minecraft:stone
+            offset: 4
+          - type: MATCH
+            block: minecraft:stone
+            offset: 6
+          - type: MATCH
+            block: minecraft:stone
+            offset: 8
+
+structures:
+  distribution:
+    type: CONSTANT
+  structures: ravine_carver

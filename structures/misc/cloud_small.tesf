@@ -1,0 +1,31 @@
+// Small Cloud Structure
+if (getBlock(0, 0, 0) != "minecraft:air") fail;
+
+num r = 6;
+num rSq = pow2(r);
+
+// Small clouds are typically longer, flatter, and wispy
+num scaleX = 0.5 + (randomInt(1000)/1000) * 2.5; 
+num scaleZ = 0.5 + (randomInt(1000)/1000) * 2.5;
+num scaleY = 2.0 + (randomInt(1000)/1000) * 1.5; // Very squashed Y
+
+for (num x = -r * 3; x <= r * 3; x = x + 1) {
+    for (num y = -r; y <= r; y = y + 1) {
+        for (num z = -r * 3; z <= r * 3; z = z + 1) {
+            num dx = x / scaleX;
+            num dy = y * scaleY;
+            num dz = z / scaleZ;
+            
+            num distSq = pow2(dx) + pow2(dy) + pow2(dz);
+            if (distSq < rSq) {
+                // Small clouds: tighter noise
+                num n = sampler("simplex3", (originX() + x) * 0.08, (originY() + y) * 0.15, (originZ() + z) * 0.08) * r * 0.8;
+                if (distSq < rSq + n) {
+                    if (getBlock(x, y, z) == "minecraft:air") {
+                        block(x, y, z, "minecraft:powder_snow");
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+id: BASE
+type: BIOME
+abstract: true
+
+features:
+  caves:
+    - CAVE_CARVERS

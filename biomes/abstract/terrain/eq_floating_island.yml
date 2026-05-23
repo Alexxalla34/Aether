@@ -1,0 +1,84 @@
+id: EQ_FLOATING_ISLAND
+type: BIOME
+abstract: true
+
+# Standard floating island equation — base template
+# Other eq_ variants can extend or override this
+
+terrain:
+  sampler:
+    type: EXPRESSION
+    expression: |
+      -1.2 + threshold +
+      -abs(y - (65 + layerPhase(x, 0, z) * 90)) / layerSpacing * layerStrength +
+      lerp(y, maxH, 0, maxH - taper,
+        max(
+          lerp(y, minH - ucTranslate, 0, minH - ucTranslate + taper,
+            islandNoise(x, y * flatness, z) * 1.4
+          ),
+          lerp(y, minH, 0, minH + taper,
+            islandNoise(x, (y - ucTranslate) * flatness, z) * ucMask(x, y / 2, z) * 1.7
+          )
+        )
+      ) - if(caveNoise(x, y, z) > caveThreshold, caveStrength, 0)
+    variables:
+      threshold: $customization.yml:island-threshold
+      layerSpacing: 45      # Increased to make layers thicker
+      layerStrength: 0.45   # Lowered from 0.8 to make the island grow wider and taller
+      maxH: $meta.yml:island-max-y
+      minH: $meta.yml:island-min-y
+      taper: $customization.yml:terrain-height
+      flatness: 0.20        # Lowered to increase spread
+      ucTranslate: -12
+      caveThreshold: $customization.yml:cave-threshold - 0.15
+      caveStrength: $customization.yml:cave-carve-strength * 1.1
+    samplers:
+
+      islandNoise:
+        dimensions: 3
+        type: PROBABILITY
+        sampler:
+          type: DOMAIN_WARP
+          amplitude: 40
+          warp:
+            type: OPEN_SIMPLEX_2
+            frequency: 0.005
+            salt: 9001
+          sampler:
+            type: FBM
+            octaves: 3
+            sampler:
+              type: OPEN_SIMPLEX_2
+              frequency: $customization.yml:island-frequency
+              salt: 1001
+      caveNoise:
+        dimensions: 3
+        type: PROBABILITY
+        sampler:
+          type: FBM
+          octaves: 2
+          sampler:
+            type: OPEN_SIMPLEX_2
+            frequency: $customization.yml:cave-frequency
+            salt: 3001
+      ucMask:
+        dimensions: 3
+        type: PROBABILITY
+        sampler:
+          type: RIDGED
+          octaves: 3
+          gain: 1
+          sampler:
+            type: OPEN_SIMPLEX_2
+            frequency: 0.005
+            salt: 1002
+      layerPhase:
+        dimensions: 3
+        type: PROBABILITY
+        sampler:
+          type: FBM
+          octaves: 2
+          sampler:
+            type: OPEN_SIMPLEX_2
+            frequency: 0.004
+            salt: 5001

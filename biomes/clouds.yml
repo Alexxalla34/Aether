@@ -1,0 +1,25 @@
+id: CLOUDS
+type: BIOME
+extends:
+  - EQ_CLOUD
+
+vanilla: minecraft:the_void
+
+tags:
+  - SKY
+
+colors:
+  fog: 0xc8deff
+  sky: 0x88bbff
+  water: 0xccddff
+  water-fog: 0xccddff
+
+climate:
+  precipitation: true
+  temperature: 0.5
+  downfall: 0.3
+
+palette:
+  - CLOUD: $meta.yml:top-y
+
+features:

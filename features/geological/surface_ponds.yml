@@ -1,0 +1,26 @@
+id: SURFACE_PONDS
+type: FEATURE
+
+distributor:
+  type: SAMPLER
+  sampler:
+    type: POSITIVE_WHITE_NOISE
+    salt: 500
+  threshold: 0.002 # Very rare but clustered
+
+locator:
+  type: SURFACE
+  range:
+    min: 1
+    max: $meta.yml:top-y
+
+structures:
+  distribution:
+    type: CONSTANT
+  # Reusing UNDERGROUND_WATER_LAKE logic but on surface
+  # Actually, Terra has a concrete config for this in Overworld called WATER_POOL or similar.
+  # Let's create a simple lake structure ref or just a small pond carver.
+  # Since I deleted the Overworld features, I'll use a simple CARVER or a structure if I have one.
+  # I'll use a carver-like structure if available, or just a small pond block set.
+  # For now, let's assume I need to create a simple pond carver structure.
+  structures: small_pond

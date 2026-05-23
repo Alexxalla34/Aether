@@ -1,0 +1,2 @@
+// Generates a simple andesite deposit
+block(0, 0, 0, "minecraft:andesite");

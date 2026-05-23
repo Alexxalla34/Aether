@@ -1,0 +1,12 @@
+id: EQ_CLOUD
+type: BIOME
+abstract: true
+
+# Cloud layer — thin wispy blobs at high altitude
+# Very high flatness = extremely thin vertical profile
+# High threshold = sparse, not filling the whole sky
+
+terrain:
+  sampler:
+    type: CONSTANT
+    value: -1

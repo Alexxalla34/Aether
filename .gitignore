@@ -2,3 +2,7 @@
 *.iml
 *.ipr
 *.jar
+.vscode/
+.DS_Store
+Thumbs.db
+*.bak

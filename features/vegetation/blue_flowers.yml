@@ -1,0 +1,40 @@
+id: BLUE_FLOWERS
+type: FEATURE
+
+distributor:
+  type: AND
+  distributors:
+    - type: SAMPLER
+      sampler:
+        type: POSITIVE_WHITE_NOISE
+        salt: 200
+      threshold: 0.1 # General density
+    - type: SAMPLER
+      sampler:
+        type: PROBABILITY
+        sampler:
+          type: OPEN_SIMPLEX_2
+          frequency: 0.05
+          salt: 201
+      threshold: 0.6 # Clustering
+
+locator:
+  type: AND
+  locators:
+    - type: SURFACE
+      range: &range
+        min: 1
+        max: $meta.yml:top-y
+    - type: PATTERN
+      range: *range
+      pattern:
+        type: MATCH_SET
+        blocks: $features/vegetation/meta.yml:plantable-blocks
+        offset: -1
+
+structures:
+  distribution:
+    type: WHITE_NOISE
+  structures:
+    - BLOCK:minecraft:blue_orchid: 3
+    - BLOCK:minecraft:cornflower: 2

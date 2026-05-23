@@ -1,0 +1,39 @@
+# Missing simplex samplers required by TerraScripts
+
+samplers:
+  simplex:
+    dimensions: 2
+    type: LINEAR
+    min: -0.9
+    max: 0.9
+    sampler:
+      type: FBM
+      octaves: 4
+      sampler:
+        type: OPEN_SIMPLEX_2
+        frequency: 0.0075
+
+  simplex2:
+    dimensions: 2
+    type: LINEAR
+    min: -0.9
+    max: 0.9
+    sampler:
+      type: FBM
+      octaves: 4
+      sampler:
+        type: OPEN_SIMPLEX_2
+        frequency: 0.0075
+
+  simplex3:
+    dimensions: 3
+    type: FBM
+    octaves: 2
+    sampler:
+      type: OPEN_SIMPLEX_2
+      frequency: 0.0075
+
+  whiteNoise:
+    dimensions: 2
+    type: WHITE_NOISE
+    salt: 999
